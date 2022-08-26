@@ -78,10 +78,15 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
     IF sy-subrc EQ 0.
       v_username = s_key-value.
 
+      "SAP expects upper case, translate to avoid errors
+      TRANSLATE v_username TO UPPER CASE.
+
+    ELSE.
+*      TODO
+*      Raise error
+
     ENDIF.
 
-* SAP expects upper case, translate to avoid errors
-    TRANSLATE v_username TO UPPER CASE.
 
     CALL FUNCTION 'BAPI_USER_DISPLAY'
       EXPORTING
