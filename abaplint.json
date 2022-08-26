@@ -8,7 +8,7 @@
   ],
   "global": {
     "exclude": [],
-    "files": "/abap/**/*.*",
+    "files": "/src/**/*.*",
     "noIssues": [],
     "skipGeneratedFunctionGroups": true,
     "skipGeneratedGatewayClasses": true,
