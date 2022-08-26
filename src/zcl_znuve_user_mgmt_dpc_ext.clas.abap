@@ -80,6 +80,7 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
 
     ENDIF.
 
+* SAP expects upper case, translate to avoid errors
     TRANSLATE v_username TO UPPER CASE.
 
     CALL FUNCTION 'BAPI_USER_DISPLAY'
