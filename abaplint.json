@@ -1,0 +1,34 @@
+{
+  "dependencies": [
+    {
+      "files": "/src/**/*.*",
+      "folder": "/deps",
+      "url": "https://github.com/abaplint/deps"
+    }
+  ],
+  "global": {
+    "exclude": [],
+    "files": "/src/**/*.*",
+    "noIssues": [],
+    "skipGeneratedFunctionGroups": true,
+    "skipGeneratedGatewayClasses": true,
+    "skipGeneratedPersistentClasses": true,
+    "skipIncludesWithoutMain": false,
+    "useApackDependencies": false
+  },
+"rules": {
+    "begin_end_names": true,
+    "check_ddic": true,
+    "check_include": true,
+    "check_syntax": true,
+    "empty_structure": true,
+    "global_class": true,
+    "implement_methods": true,
+    "method_implemented_twice": true,
+    "parser_error": true,
+    "parser_missing_space": true,
+    "superclass_final": true,
+    "unknown_types": true,
+    "xml_consistency": true
+  }
+}
