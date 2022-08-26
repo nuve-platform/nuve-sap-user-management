@@ -1,0 +1,21 @@
+# This is a basic workflow
+
+name: Lint
+
+# Controls when the action will run. Workflow runs automatically when creating a PR.
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  wait-for-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wait for other checks to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          check-name: abaplint
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 5
