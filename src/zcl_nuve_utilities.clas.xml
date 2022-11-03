@@ -18,6 +18,12 @@
      <LANGU>E</LANGU>
      <DESCRIPT>Convert date to ABAP format</DESCRIPT>
     </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_NUVE_UTILITIES</CLSNAME>
+     <CMPNAME>CONVERT_DATE_TO_EPOCH</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Convert ABAP to epoch time</DESCRIPT>
+    </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
  </asx:abap>

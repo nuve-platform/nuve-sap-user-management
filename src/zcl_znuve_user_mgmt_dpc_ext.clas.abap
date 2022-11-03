@@ -101,27 +101,39 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
       TABLES
         return    = t_return.
 
+    er_entity-username     = v_username.
+    er_entity-first_name   = s_address-firstname.
+    er_entity-last_name    = s_address-lastname.
+    er_entity-email        = s_address-e_mail.
+    er_entity-valid_from   = zcl_nuve_utilities=>convert_date_to_epoch( s_logon_data-gltgv ).
+    er_entity-valid_to     = zcl_nuve_utilities=>convert_date_to_epoch( s_logon_data-gltgb ).
+
   ENDMETHOD.
 
 
   METHOD userset_get_entityset.
+
+    TYPES: BEGIN OF ty_user,
+             bname TYPE bname,
+           END OF ty_user.
 
     DATA: v_username   TYPE bapibname-bapibname,
           s_key        TYPE /iwbep/s_mgw_name_value_pair,
           s_address    TYPE bapiaddr3,
           s_password   TYPE bapipwd,
           s_logon_data TYPE bapilogond,
-          s_usr01      TYPE usr01,
-          t_usr01      TYPE TABLE OF usr01,
+          s_entityset  TYPE znuve_user_mgmt_user_s,
+          s_user       TYPE ty_user,
+          t_user       TYPE TABLE OF ty_user,
           t_return     TYPE TABLE OF bapiret2.
 
     SELECT bname
      FROM usr01
-     INTO TABLE t_usr01.
+     INTO TABLE t_user.
 
-    LOOP AT t_usr01 INTO s_usr01.
+    LOOP AT t_user INTO s_user.
       CLEAR v_username.
-      v_username = s_usr01-bname.
+      v_username = s_user-bname.
 
       CALL FUNCTION 'BAPI_USER_GET_DETAIL'
         EXPORTING
@@ -131,6 +143,15 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
           address   = s_address
         TABLES
           return    = t_return.
+
+      s_entityset-username     = v_username.
+      s_entityset-first_name   = s_address-firstname.
+      s_entityset-last_name    = s_address-lastname.
+      s_entityset-email        = s_address-e_mail.
+      s_entityset-valid_from   = zcl_nuve_utilities=>convert_date_to_epoch( s_logon_data-gltgv ).
+      s_entityset-valid_to     = zcl_nuve_utilities=>convert_date_to_epoch( s_logon_data-gltgb ).
+
+      APPEND s_entityset TO et_entityset.
 
     ENDLOOP.
 
