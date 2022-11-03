@@ -24,8 +24,9 @@ CLASS ZCL_NUVE_UTILITIES IMPLEMENTATION.
     DATA: tz         TYPE ttzz-tzone.
 
     CONVERT TIME STAMP im_time_stamp_v TIME ZONE tz
-            INTO DATE re_date_v TIME DATA(tim)
-            DAYLIGHT SAVING TIME DATA(dst).
+            INTO DATE re_date_v.
+*            TIME DATA(tim)
+*            DAYLIGHT SAVING TIME DATA(dst).
 
   ENDMETHOD.
 ENDCLASS.

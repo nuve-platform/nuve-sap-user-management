@@ -79,11 +79,14 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
 
   METHOD userset_get_entity.
 
-    DATA: v_username TYPE bapibname-bapibname,
-          s_key      TYPE /iwbep/s_mgw_name_value_pair,
-          t_return   TYPE TABLE OF bapiret2.
+    DATA: v_username   TYPE bapibname-bapibname,
+          s_key        TYPE /iwbep/s_mgw_name_value_pair,
+          s_address    TYPE bapiaddr3,
+          s_password   TYPE bapipwd,
+          s_logon_data TYPE bapilogond,
+          t_return     TYPE TABLE OF bapiret2.
 
-    READ TABLE it_key_tab INTO s_key WITH KEY name = 'Username'.
+    READ TABLE it_key_tab INTO s_key WITH KEY name = 'username'.
     IF sy-subrc EQ 0.
       v_username = s_key-value.
 
@@ -91,63 +94,45 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
 
     CALL FUNCTION 'BAPI_USER_GET_DETAIL'
       EXPORTING
-        USERNAME             = v_username
-*       CACHE_RESULTS        = 'X'
-*     IMPORTING
-*       LOGONDATA            =
-*       DEFAULTS             =
-*       ADDRESS              =
-*       COMPANY              =
-*       SNC                  =
-*       REF_USER             =
-*       ALIAS                =
-*       UCLASS               =
-*       LASTMODIFIED         =
-*       ISLOCKED             =
-*       IDENTITY             =
-*       ADMINDATA            =
-*       DESCRIPTION          =
+        username  = v_username
+      IMPORTING
+        logondata = s_logon_data
+        address   = s_address
       TABLES
-*       PARAMETER            =
-*       PROFILES             =
-*       ACTIVITYGROUPS       =
-        RETURN               = t_return
-*       ADDTEL               =
-*       ADDFAX               =
-*       ADDTTX               =
-*       ADDTLX               =
-*       ADDSMTP              =
-*       ADDRML               =
-*       ADDX400              =
-*       ADDRFC               =
-*       ADDPRT               =
-*       ADDSSF               =
-*       ADDURI               =
-*       ADDPAG               =
-*       ADDCOMREM            =
-*       PARAMETER1           =
-*       GROUPS               =
-*       UCLASSSYS            =
-*       EXTIDHEAD            =
-*       EXTIDPART            =
-*       SYSTEMS              =
-              .
+        return    = t_return.
 
   ENDMETHOD.
 
 
   METHOD userset_get_entityset.
 
-    DATA: t_user TYPE znuve_user_mgmt_user_t.
+    DATA: v_username   TYPE bapibname-bapibname,
+          s_key        TYPE /iwbep/s_mgw_name_value_pair,
+          s_address    TYPE bapiaddr3,
+          s_password   TYPE bapipwd,
+          s_logon_data TYPE bapilogond,
+          s_usr01      TYPE usr01,
+          t_usr01      TYPE TABLE OF usr01,
+          t_return     TYPE TABLE OF bapiret2.
 
-* USR21 get PERSNUMBER
-* ADRP use PERSNUMBER to get NAME_FIRST NAME_LAST OR NAME_TEXT (full name)
-    SELECT
-      bname AS username
-      gltgv AS valid_from
-      gltgb AS valid_to
-    FROM usr02
-    INTO CORRESPONDING FIELDS OF TABLE et_entityset.
+    SELECT bname
+     FROM usr01
+     INTO TABLE t_usr01.
+
+    LOOP AT t_usr01 INTO s_usr01.
+      CLEAR v_username.
+      v_username = s_usr01-bname.
+
+      CALL FUNCTION 'BAPI_USER_GET_DETAIL'
+        EXPORTING
+          username  = v_username
+        IMPORTING
+          logondata = s_logon_data
+          address   = s_address
+        TABLES
+          return    = t_return.
+
+    ENDLOOP.
 
   ENDMETHOD.
 
