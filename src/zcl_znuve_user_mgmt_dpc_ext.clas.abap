@@ -40,8 +40,8 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
     s_address-firstname  = s_user_payload-first_name.
     s_address-lastname   = s_user_payload-last_name.
     s_address-e_mail     = s_user_payload-email.
-    s_logon_data-gltgv   = s_user_payload-valid_from.
-    s_logon_data-gltgb   = s_user_payload-valid_to.
+    s_logon_data-gltgv   = zcl_nuve_utilities=>convert_date_to_abap( s_user_payload-valid_from ).
+    s_logon_data-gltgb   = zcl_nuve_utilities=>convert_date_to_abap( s_user_payload-valid_to ).
 
     CALL FUNCTION 'BAPI_USER_CREATE1'
       EXPORTING
