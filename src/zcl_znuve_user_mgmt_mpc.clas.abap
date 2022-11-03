@@ -6,11 +6,11 @@ class ZCL_ZNUVE_USER_MGMT_MPC definition
 public section.
 
   types:
-     TS_USER type ZNUVE_USER_MGMT_USER_S .
+         TS_USER type ZNUVE_USER_MGMT_USER_S .
   types:
-TT_USER type standard table of TS_USER .
+    TT_USER type standard table of TS_USER .
   types:
-   begin of ts_text_element,
+       begin of ts_text_element,
       artifact_name  type c length 40,       " technical name
       artifact_type  type c length 4,
       parent_artifact_name type c length 40, " technical name
@@ -18,7 +18,7 @@ TT_USER type standard table of TS_USER .
       text_symbol    type textpoolky,
    end of ts_text_element .
   types:
-         tt_text_elements type standard table of ts_text_element with key text_symbol .
+             tt_text_elements type standard table of ts_text_element with key text_symbol .
 
   constants GC_USER type /IWBEP/IF_MGW_MED_ODATA_TYPES=>TY_E_MED_ENTITY_NAME value 'user' ##NO_TEXT.
 
@@ -88,7 +88,7 @@ lo_entity_type = model->create_entity_type( iv_entity_type_name = 'user' iv_def_
 *Properties
 ***********************************************************************************************************************************
 
-lo_property = lo_entity_type->create_property( iv_property_name = 'Username' iv_abap_fieldname = 'USERNAME' ). "#EC NOTEXT
+lo_property = lo_entity_type->create_property( iv_property_name = 'username' iv_abap_fieldname = 'USERNAME' ). "#EC NOTEXT
 lo_property->set_is_key( ).
 lo_property->set_type_edm_string( ).
 lo_property->set_maxlength( iv_max_length = 12 ). "#EC NOTEXT
@@ -101,7 +101,7 @@ lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
       EXPORTING
         iv_key      = 'unicode'
         iv_value    = 'false' ).
-lo_property = lo_entity_type->create_property( iv_property_name = 'FirstName' iv_abap_fieldname = 'FIRST_NAME' ). "#EC NOTEXT
+lo_property = lo_entity_type->create_property( iv_property_name = 'firstName' iv_abap_fieldname = 'FIRST_NAME' ). "#EC NOTEXT
 lo_property->set_type_edm_string( ).
 lo_property->set_maxlength( iv_max_length = 40 ). "#EC NOTEXT
 lo_property->set_creatable( abap_false ).
@@ -113,13 +113,74 @@ lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
       EXPORTING
         iv_key      = 'unicode'
         iv_value    = 'false' ).
-lo_property = lo_entity_type->create_property( iv_property_name = 'LastName' iv_abap_fieldname = 'LAST_NAME' ). "#EC NOTEXT
+lo_property = lo_entity_type->create_property( iv_property_name = 'lastName' iv_abap_fieldname = 'LAST_NAME' ). "#EC NOTEXT
 lo_property->set_type_edm_string( ).
 lo_property->set_maxlength( iv_max_length = 40 ). "#EC NOTEXT
 lo_property->set_creatable( abap_false ).
 lo_property->set_updatable( abap_false ).
 lo_property->set_sortable( abap_false ).
 lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'email' iv_abap_fieldname = 'EMAIL' ). "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 241 ). "#EC NOTEXT
+lo_property->set_conversion_exit( 'SXIDN' ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'phoneNumber' iv_abap_fieldname = 'PHONE_NUMBER' ). "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 30 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'isLocked' iv_abap_fieldname = 'IS_LOCKED' ). "#EC NOTEXT
+lo_property->set_type_edm_string( ).
+lo_property->set_maxlength( iv_max_length = 1 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_false ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'validFrom' iv_abap_fieldname = 'VALID_FROM' ). "#EC NOTEXT
+lo_property->set_type_edm_datetime( ).
+lo_property->set_precison( iv_precision = 7 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_true ).
+lo_property->set_filterable( abap_false ).
+lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
+      EXPORTING
+        iv_key      = 'unicode'
+        iv_value    = 'false' ).
+lo_property = lo_entity_type->create_property( iv_property_name = 'validTo' iv_abap_fieldname = 'VALID_TO' ). "#EC NOTEXT
+lo_property->set_type_edm_datetime( ).
+lo_property->set_precison( iv_precision = 7 ). "#EC NOTEXT
+lo_property->set_creatable( abap_false ).
+lo_property->set_updatable( abap_false ).
+lo_property->set_sortable( abap_false ).
+lo_property->set_nullable( abap_true ).
 lo_property->set_filterable( abap_false ).
 lo_property->/iwbep/if_mgw_odata_annotatabl~create_annotation( 'sap' )->add(
       EXPORTING
@@ -157,7 +218,7 @@ lo_entity_set->set_filter_required( abap_false ).
 *&---------------------------------------------------------------------*
 
 
-  CONSTANTS: lc_gen_date_time TYPE timestamp VALUE '20220824005233'.                  "#EC NOTEXT
+  CONSTANTS: lc_gen_date_time TYPE timestamp VALUE '20221102185626'.                  "#EC NOTEXT
   rv_last_modified = super->get_last_modified( ).
   IF rv_last_modified LT lc_gen_date_time.
     rv_last_modified = lc_gen_date_time.
