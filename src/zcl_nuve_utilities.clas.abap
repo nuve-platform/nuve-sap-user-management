@@ -26,12 +26,10 @@ CLASS ZCL_NUVE_UTILITIES IMPLEMENTATION.
 
   METHOD convert_date_to_abap.
 
-    DATA: tz         TYPE ttzz-tzone.
+    CONSTANTS: c_utc TYPE c LENGTH 6 VALUE 'UTC'.
 
-    CONVERT TIME STAMP im_time_stamp_v TIME ZONE tz
+    CONVERT TIME STAMP im_time_stamp_v TIME ZONE c_utc
             INTO DATE re_date_v.
-*            TIME DATA(tim)
-*            DAYLIGHT SAVING TIME DATA(dst).
 
   ENDMETHOD.
 
