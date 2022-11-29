@@ -49,6 +49,8 @@ DATA: v_username   TYPE bapibname-bapibname,
       s_logon_data TYPE bapilogond,
       t_return     TYPE TABLE OF bapiret2.
 
+* MARY'S CODE!!!
+
 READ TABLE it_key_tab INTO s_key WITH KEY name = 'username'.
 
 IF sy-subrc EQ 0.
