@@ -17,18 +17,69 @@
     "useApackDependencies": false
   },
 "rules": {
-    "begin_end_names": true,
-    "check_ddic": true,
-    "check_include": true,
-    "check_syntax": true,
-    "empty_structure": true,
-    "global_class": true,
-    "implement_methods": true,
-    "method_implemented_twice": true,
-    "parser_error": true,
-    "parser_missing_space": true,
-    "superclass_final": true,
-    "unknown_types": true,
-    "xml_consistency": true
+    "exporting": true,
+    "local_class_naming": {
+      "exclude": [],
+      "severity": "Error",
+      "patternKind": "required",
+      "ignoreNames": [],
+      "ignorePatterns": [],
+      "local": "^LCL_.+$",
+      "exception": "^LCX_.+$",
+      "test": "^LTCL_.+$"
+    },
+    "method_parameter_names": {
+      "exclude": [],
+      "severity": "Error",
+      "patternKind": "required",
+      "ignoreNames": [],
+      "ignorePatterns": [],
+      "ignoreExceptions": true,
+      "importing": "^I._.+$",
+      "returning": "^R._.+$",
+      "changing": "^C._.+$",
+      "exporting": "^E._.+$"
+    },
+    "object_naming": {
+      "exclude": [],
+      "severity": "Error",
+      "patternKind": "required",
+      "ignoreNames": [],
+      "ignorePatterns": [],
+      "clas": "^ZC(L|X)",
+      "intf": "^ZIF",
+      "prog": "^Z",
+      "fugr": "^Z",
+      "tabl": "^Z",
+      "ttyp": "^Z",
+      "dtel": "^Z",
+      "doma": "^Z",
+      "msag": "^Z",
+      "tran": "^Z",
+      "enqu": "^EZ",
+      "auth": "^Z",
+      "pinf": "^Z",
+      "idoc": "^Z",
+      "xslt": "^Z",
+      "ssfo": "^Z",
+      "ssst": "^Z",
+      "shlp": "^Z"
+    },
+    "selection_screen_naming": {
+      "exclude": [],
+      "severity": "Error",
+      "patternKind": "required",
+      "ignoreNames": [],
+      "ignorePatterns": [],
+      "parameter": "^P_.+$",
+      "selectOption": "^S_.+$",
+      "screenElement": "^SC_.+$"
+    },
+    "types_naming": {
+      "exclude": [],
+      "severity": "Error",
+      "pattern": "^TY_.+$"
+    },
+    "unused_variables": true
   }
 }
