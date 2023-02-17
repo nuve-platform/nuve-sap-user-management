@@ -119,7 +119,6 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
            END OF ty_user.
 
     DATA: v_username   TYPE bapibname-bapibname,
-          s_key        TYPE /iwbep/s_mgw_name_value_pair,
           s_address    TYPE bapiaddr3,
           s_islocked   TYPE bapislockd,
           s_logon_data TYPE bapilogond,
