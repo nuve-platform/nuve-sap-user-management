@@ -27,7 +27,6 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
   METHOD userset_create_entity.
 
     DATA: v_username     TYPE bapibname-bapibname,
-          s_key          TYPE /iwbep/s_mgw_name_value_pair,
           s_address      TYPE bapiaddr3,
           s_password     TYPE bapipwd,
           s_logon_data   TYPE bapilogond,
@@ -82,7 +81,6 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
     DATA: v_username   TYPE bapibname-bapibname,
           s_key        TYPE /iwbep/s_mgw_name_value_pair,
           s_address    TYPE bapiaddr3,
-          s_password   TYPE bapipwd,
           s_islocked   TYPE bapislockd,
           s_logon_data TYPE bapilogond,
           t_return     TYPE TABLE OF bapiret2.
@@ -123,7 +121,6 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
     DATA: v_username   TYPE bapibname-bapibname,
           s_key        TYPE /iwbep/s_mgw_name_value_pair,
           s_address    TYPE bapiaddr3,
-          s_password   TYPE bapipwd,
           s_islocked   TYPE bapislockd,
           s_logon_data TYPE bapilogond,
           s_entityset  TYPE znuve_user_mgmt_user_s,
@@ -172,7 +169,6 @@ CLASS ZCL_ZNUVE_USER_MGMT_DPC_EXT IMPLEMENTATION.
           s_address      TYPE bapiaddr3,
           s_address_u    TYPE bapiaddr3,
           s_address_x    TYPE bapiaddr3x,
-          s_password     TYPE bapipwd,
           s_islocked     TYPE bapislockd,
           s_islocked_u   TYPE bapislockd,
           s_logon_data   TYPE bapilogond,
